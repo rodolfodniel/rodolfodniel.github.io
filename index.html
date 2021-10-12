@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+<title>Encontre sua Bomba</title>
+
+<link rel="stylesheet" href="application.css">
+</head>
+
+<body>
+ <main>
+<center>
+    <h1>Dimensionamento de Bombas Online</h1></center>
+    <h2>Grupo:</h2>
+<p>Rodolfo, Livia, Alisson, Pedro e Luan</p>
+
+
+<form action="" method="post"><center>
+    Quantidade de Pessoas: <input type="text" name="qtd_pessoas" id="qtd_pessoas" />  <br>
+    Altura da caixa d'água inferior até a bomba: <input type="text" name="alt_suc" id="alt_suc" value="0" /> <br>
+    Altura da bomba até a caixa d'água superior: <input type="text" name="alt_rec" id="alt_rec" value="0" /> <br>
+    Comprimento da tubulação (caixa d'água inferior até a bomba): <input type="text" name="Lsuc" id="Lsuc" value="0" /> <br>
+    Comprimento da tubulação (bomba até a caixa d'água superior): <input type="text" name="Lrec" id="Lrec" value="0" /> <br>
+    
+    Acessórios: <br>
+      Recalque: <br>
+    Válvula de Pé: <input type="text" name="valpe" id="valpe" value="0" /> <br>
+    Joelho 90º: <input type="text" name="joelhor" id="joelhor" value="0" /> <br>
+    Sucção: <br>
+    Válvula de Gaveta: <input type="text" name="valgav" id="valgav" value="0" /> <br>
+    Joelho 90º: <input type="text" name="joelhos" id="joelhos" value="0" /> <br>
+    Válvula de Retenção: <input type="text" name="valret" id="valret" value="0" /> <br>
+
+
+    Vazão: <input type="text" name="vazao" id="vazao" /> <br>
+    Diâmetro de Sucção: <input type="text" name="vazao" id="Dsuc" /> <br>
+    Diâmetro de Recalque: <input type="text" name="vazao" id="Drec" /> <br>
+    Altura manométrica:<input type="text" name="mano" id="mano" /> <br>
+    Potência da Bomba:<input type="text" name="pot" id="pot" /> <br> 
+
+    <input type="button" value="Calcular" onclick="calcular();" name="">
+  </form>
+</center>
+<script type="text/javascript">
+
+function calcular(){
+  let percapta = 250
+  let K = 1.3 //ABNT
+  let valpe = parseInt(document.getElementById("valpe").value);
+  let valgav = parseInt(document.getElementById("valgav").value);
+  let valret = parseInt(document.getElementById("valret").value);
+  let joelhos = parseInt(document.getElementById("joelhos").value);
+  let joelhor = parseInt(document.getElementById("joelhor").value);
+  let H_valpe = valpe*25
+  let H_valgav = valgav*0.8
+  let H_valret = valret*7.1
+  let H_joelhos = joelhos*1.4
+  let H_joelhor = joelhor*1.3
+  let qtd_pessoas = parseInt(document.getElementById("qtd_pessoas").value);
+  let alt_suc = parseInt(document.getElementById("alt_suc").value);
+  let alt_rec = parseInt(document.getElementById("alt_rec").value);
+  let Lsuc = parseInt(document.getElementById("Lsuc").value);
+  let Lrec = parseInt(document.getElementById("Lrec").value);
+  let vazao = document.getElementById("vazao");
+  let Dsuc = document.getElementById("Dsuc");
+  let Drec = document.getElementById("Drec");
+  let hsuc = alt_suc+((H_joelhos+H_valpe+Lsuc)*10,646*(vazao.value**1,852))/((140**1,852)*((Dsuc.value/1000)**4,87)) //cálculo das perdas nos acessórios da sucção
+  let hrec = alt_rec+((H_joelhor+H_valgav+valret+Lrec)*10,646*(vazao.value**1,852))/((140**1,852)*((Drec.value/1000)**4,87)) //cálculo das perdas nos acessórios da sucção
+  
+vazao.value = (qtd_pessoas*percapta/1000)/(8*3600);
+
+Dsuc.value = K*((8/24)**0.25)*Math.sqrt(vazao.value)*1000;
+Drec.value = K*((8/24)**0.25)*Math.sqrt(vazao.value)*1000;
+  if(Dsuc.value>85 & Dsuc.value<100 ) Dsuc.value = 100;
+  if(Drec.value>85 & Drec.value<100 ) Drec.value = 85;
+  if(Dsuc.value>0 & Dsuc.value<25 ) Dsuc.value = 25;
+  if(Drec.value>0 & Drec.value<25 ) Drec.value = 20;
+  if(Dsuc.value>25 & Dsuc.value<32 ) Dsuc.value = 32;
+  if(Drec.value>25 & Drec.value<32 ) Drec.value = 25;
+  if(Dsuc.value>32 & Dsuc.value<40 ) Dsuc.value = 40;
+  if(Drec.value>32 & Drec.value<40 ) Drec.value = 32;
+  if(Dsuc.value>40 & Dsuc.value<50 ) Dsuc.value = 50;
+  if(Drec.value>40 & Drec.value<50 ) Drec.value = 40;
+  if(Dsuc.value>50 & Dsuc.value<60 ) Dsuc.value = 60;
+  if(Drec.value>50 & Drec.value<60 ) Drec.value = 50;
+  if(Dsuc.value>60 & Dsuc.value<75 ) Dsuc.value = 75;
+  if(Drec.value>60 & Drec.value<75 ) Drec.value = 60;
+  if(Dsuc.value>75 & Dsuc.value<85 ) Dsuc.value = 85;
+  if(Drec.value>75 & Drec.value<85 ) Drec.value = 75;
+  if(Dsuc.value>100 & Dsuc.value<150 ) Dsuc.value = 150;
+  if(Drec.value>100 & Drec.value<150 ) Drec.value = 100;
+
+
+let mano = document.getElementById("mano");
+
+mano.value = hrec+hsuc;
+
+let pot = document.getElementById("pot");
+
+pot.value = (1000*vazao.value*mano.value)/(0.55);
+
+}
+
+</script>
+
+</main> 
+</body>
+
+</html>
