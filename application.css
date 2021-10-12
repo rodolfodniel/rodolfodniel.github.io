@@ -1,0 +1,13 @@
+body {
+    width: 85%;
+    margin:auto;
+    background: url(eng.jpg) center;
+    background-size: cover;
+
+    font-family: sans-serif;
+    line-height: 1.5;
+}
+
+main{
+    background: #7e7c7c80;
+}
