@@ -23,6 +23,7 @@
     Comprimento da tubulação (bomba até a caixa d'água superior): <input type="text" name="Lrec" id="Lrec" value="0" /> <br>
     <br>
     <div class="acess">
+     
     Acessórios: <br>
       Recalque: <br>
     Válvula de Pé: <input type="text" name="valpe" id="valpe" value="0" /> <br>
@@ -32,9 +33,11 @@
     Joelho 90º: <input type="text" name="joelhos" id="joelhos" value="0" /> <br>
     Válvula de Retenção: <input type="text" name="valret" id="valret" value="0" /> <br>
 </div>
+ 
 <br>
 <input type="button" value="Calcular" onclick="calcular();" name=""> <br>
 <br>
+ 
 <div class="resultado">
     
     Vazão: <input type="text" name="vazao" id="vazao" /> <br>
@@ -101,10 +104,6 @@ Drec.value = K*((8/24)**0.25)*Math.sqrt(vazao.value)*1000;
 let mano = document.getElementById("mano");
 
 mano.value = hrec+hsuc;
-
-//let pot = document.getElementById("pot");
-
-//pot.value = (1000*vazao.value*mano.value)/(0.55);
 
 }
 
