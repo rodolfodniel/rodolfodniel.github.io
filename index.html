@@ -16,12 +16,13 @@
 
 
 <form action="" method="post"><center>
-    Quantidade de Pessoas: <input type="text" name="qtd_pessoas" id="qtd_pessoas" />  <br>
+    Quantidade de Pessoas: <input type="text" name="qtd_pessoas" id="qtd_pessoas" value="0" />  <br>
     Altura da caixa d'água inferior até a bomba: <input type="text" name="alt_suc" id="alt_suc" value="0" /> <br>
     Altura da bomba até a caixa d'água superior: <input type="text" name="alt_rec" id="alt_rec" value="0" /> <br>
     Comprimento da tubulação (caixa d'água inferior até a bomba): <input type="text" name="Lsuc" id="Lsuc" value="0" /> <br>
     Comprimento da tubulação (bomba até a caixa d'água superior): <input type="text" name="Lrec" id="Lrec" value="0" /> <br>
-    
+    <br>
+    <div class="acess">
     Acessórios: <br>
       Recalque: <br>
     Válvula de Pé: <input type="text" name="valpe" id="valpe" value="0" /> <br>
@@ -30,15 +31,21 @@
     Válvula de Gaveta: <input type="text" name="valgav" id="valgav" value="0" /> <br>
     Joelho 90º: <input type="text" name="joelhos" id="joelhos" value="0" /> <br>
     Válvula de Retenção: <input type="text" name="valret" id="valret" value="0" /> <br>
-
-
+</div>
+<br>
+<input type="button" value="Calcular" onclick="calcular();" name=""> <br>
+<br>
+<div class="resultado">
+    
     Vazão: <input type="text" name="vazao" id="vazao" /> <br>
     Diâmetro de Sucção: <input type="text" name="vazao" id="Dsuc" /> <br>
     Diâmetro de Recalque: <input type="text" name="vazao" id="Drec" /> <br>
     Altura manométrica:<input type="text" name="mano" id="mano" /> <br>
-    Potência da Bomba:<input type="text" name="pot" id="pot" /> <br> 
-
-    <input type="button" value="Calcular" onclick="calcular();" name="">
+    <br>
+   
+    
+</div>
+    
   </form>
 </center>
 <script type="text/javascript">
@@ -95,9 +102,9 @@ let mano = document.getElementById("mano");
 
 mano.value = hrec+hsuc;
 
-let pot = document.getElementById("pot");
+//let pot = document.getElementById("pot");
 
-pot.value = (1000*vazao.value*mano.value)/(0.55);
+//pot.value = (1000*vazao.value*mano.value)/(0.55);
 
 }
 
